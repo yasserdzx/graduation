@@ -1,0 +1,14 @@
+<!-- study_abroad_app/templates/study_abroad_app/delete_application.html -->
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block content %}
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete your application?</p>
+    <form method="post" action="{% url 'delete_application' application.id %}">
+        {% csrf_token %}
+        <button type="submit">Confirm Deletion</button>
+    </form>
+    <a href="{% url 'check_files' %}">Cancel</a>
+{% endblock %}

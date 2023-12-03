@@ -1,0 +1,72 @@
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Welcome to Study Abroad{% endblock %}
+
+{% block content %}
+    <style>
+        h1 , p{
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        li a:hover {
+            background-color: #333;
+        }
+
+        .info-box {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+           
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <h1>Welcome to the Study Abroad Application Portal</h1>
+    <p>Explore exciting study abroad programs and apply today!</p>
+    <h2>Available Programs</h2>
+    
+    {% if programs %}
+        <ul>
+            {% for program in programs %}
+                <li>
+                    <strong>Name:</strong> {{ program.title }}<br>
+                    <strong>Description:</strong> {{ program.description }}<br>
+                    <strong>Deadline:</strong> {{ program.application_deadline }}<br>
+                    <strong>Country:</strong> {{ program.country }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No programs available.</p>
+    {% endif %}
+
+    <div class="info-box">
+        <h2>Study in Russian Universities</h2>
+        <p>
+            Thinking about studying in Russia? Discover world-class education and cultural experiences. Russian universities offer a diverse range of programs and research opportunities.
+            Apply now to explore the rich history and vibrant academic community of Russian universities. <a href="{% url 'apply' %}">Apply Now</a>
+        </p>
+    </div>
+{% endblock %}

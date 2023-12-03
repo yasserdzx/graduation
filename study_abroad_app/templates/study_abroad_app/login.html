@@ -1,0 +1,13 @@
+<!-- study_abroad_app/templates/registration/login.html -->
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+    <h2>Sign In</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Log In">
+    </form>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Apply{% endblock %}
+
+{% block content %}
+<div class="apply-container">
+    {% if user.is_authenticated %}
+        <h2>Apply Now</h2>
+        <p>Please fill in your information carefully so that we can evaluate your request properly. We are here to assist you in choosing the right university/institute and help you throughout the entire application process in the country of your choice, so that you can obtain the desired acceptance.</p>
+
+        <p>( Language programs – Summer program – Bachelors – Masters)</p>
+
+        <p>We are here to help you with:</p>
+        <ul>
+            <li>Select a great university.</li>
+            <li>Gain admission.</li>
+            <li>Assist you through the entire application process.</li>
+        </ul>
+
+        <p>All you need to do is fill out the form and then relax and wait for a call from our team to confirm and review all of your information in order to provide you with a free consultation regarding your inquiries and registration requirements.</p>
+
+        <form method="post" action="{% url 'apply' %}" enctype="multipart/form-data" class="apply-form">
+
+            {% csrf_token %}
+            
+            {{ form.non_field_errors }}
+            
+            <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+            
+            <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+            
+            <label for="{{ form.passport_number.id_for_label }}">Passport Number:</label>
+            {{ form.passport_number }}
+            {{ form.passport_number.errors }}
+            
+            <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth:</label>
+            {{ form.date_of_birth }}
+            {{ form.date_of_birth.errors }}
+
+            <label for="{{ form.program.id_for_label }}">Program:</label>
+            {{ form.program }}
+            {{ form.program.errors }}
+            
+            <label for="{{ form.passport_upload.id_for_label }}">Passport Upload:</label>
+            {{ form.passport_upload }}
+            {{ form.passport_upload.errors }}
+            
+            <label for="{{ form.certificate_upload.id_for_label }}">Certificate Upload:</label>
+            {{ form.certificate_upload }}
+            {{ form.certificate_upload.errors }}
+
+            <label for="{{ form.signed_form_upload.id_for_label }}">Upload Signed Application Form:</label>
+            {{ form.signed_form_upload }}
+            
+            <button type="submit" class="submit-button">Submit Application</button>
+        </form>
+    {% else %}
+        <p class="authentication-message">Please <a href="{% url 'signup' %}" class="auth-link">sign up</a> or <a href="{% url 'login' %}" class="auth-link">sign in</a> to apply.</p>
+    {% endif %}
+    <p>Download the application form: <a href="{% url 'download_application_form' %}" target="_blank">Download Form</a></p>
+</div>
+{% endblock %}
+
+{% block extrastyles %}
+<style>
+    /* Your existing styles */
+
+    /* Additional styles for the new fields */
+    .apply-form label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .apply-form input,
+    .apply-form textarea,
+    .apply-form select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        box-sizing: border-box;
+    }
+
+    /* Responsive styles */
+    @media (min-width: 768px) {
+        /* Adjust form layout for larger screens */
+        .apply-form label {
+            display: inline-block;
+            width: 30%;
+            margin-top: 0;
+        }
+
+        .apply-form input,
+        .apply-form textarea,
+        .apply-form select {
+            width: 70%;
+            margin-top: 0;
+        }
+
+        .apply-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0f2738; /* Button background color */
+            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-form button:hover {
+            background-color: #08131b; /* Button background color on hover */
+        }
+    }
+
+    /* Styling for authentication message links */
+    .auth-link {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .auth-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

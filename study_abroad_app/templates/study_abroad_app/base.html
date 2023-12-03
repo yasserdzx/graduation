@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Study Abroad{% endblock %}</title>
+    {% block extrastyles %}{% endblock %}
+   <style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    header {
+        background-color: #333;
+        padding: 10px;
+        color: white;
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #555;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    nav li {
+        margin-right: 10px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Add transition for color */
+    }
+
+    nav a:hover {
+        background-color: #333;
+        color: #ffcc00;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        background: url('{% static "study_abroad_app/ff.PNG" %}') no-repeat center center;
+        background-size: cover;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+
+    <!-- Add your CSS stylesheets or links here -->
+</head>
+<body>
+    <header>
+        
+        <nav>
+            <div class="logo"></div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                {% if user.is_authenticated %}
+                     <li><a href="{% url 'guide' %}">guide </a></li>
+                    <li><a href="{% url 'apply' %}">Apply Now </a></li>
+                    <li><a href="{% url 'check_files' %}">Check application</a></li>
+                    <li><a href="{% url 'aboutus' %}">About us</a></li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                 
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Sign In</a></li>
+               
+                    
+                {% endif %}
+                <!-- Add more navigation buttons as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Your footer content goes here -->
+        &copy; 2023 Study Abroad. All rights reserved. 
+        
+    </footer>
+</body>
+</html>

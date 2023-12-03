@@ -1,0 +1,125 @@
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}À propos de Harba Agency{% endblock %}
+
+{% block content %}
+    <style>
+        section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .image img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            max-width: 600px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        span {
+            display: block;
+            height: 2px;
+            width: 50px;
+            background-color: #3498db;
+            margin: 10px 0;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .links {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            display: flex;
+        }
+
+        .links li {
+            margin-right: 10px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .vertical-line {
+            height: 15px;
+            width: 2px;
+            background-color: #333;
+            margin: 0 10px;
+        }
+
+        .icons {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+        }
+
+        .icons li {
+            margin-right: 10px;
+        }
+
+        .icons i {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .credit {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        .credit a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .credit a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <section>
+        <div class="image">
+            <img src="https://spb.hse.ru/data/2020/05/12/1545841910/3Study-in-Russia-1.png">
+        </div>
+
+        <div class="content">
+            <h2>About Harba Agency</h2>
+            <span></span>
+            <p>
+                Harba is an agency created by Algerian students to assist students in pursuing higher education abroad and providing as many opportunities as possible. Founded in 2020, we strive to help students achieve their educational goals.
+            </p>
+            <ul class="links">
+            
+          
+            </ul>
+            <ul class="icons">
+                <li><i class="fa fa-twitter"></i></li>
+                <li><i class="fa fa-facebook"></i></li>
+                <li><i class="fa fa-github"></i></li>
+                <li><i class="fa fa-pinterest"></i></li>
+            </ul>
+        </div>
+    </section>
+   
+{% endblock %}

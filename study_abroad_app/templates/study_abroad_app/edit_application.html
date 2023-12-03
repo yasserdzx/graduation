@@ -1,0 +1,14 @@
+<!-- study_abroad_app/templates/study_abroad_app/edit_application.html -->
+
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Edit Application{% endblock %}
+
+{% block content %}
+    <h2>Edit Application</h2>
+    <form method="post" action="{% url 'edit_application' application.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+{% endblock %}

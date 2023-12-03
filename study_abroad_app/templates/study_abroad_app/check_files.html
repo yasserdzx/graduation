@@ -1,0 +1,57 @@
+{% extends 'study_abroad_app/base.html' %}
+
+{% block title %}Check Your Applications{% endblock %}
+
+{% block content %}
+    <h2>Your Applications</h2>
+    
+    {% if user_applications %}
+        <ul>
+            {% for application in user_applications %}
+                <li>
+                    <strong>Status:</strong> {{ application.get_status_display }}<br>
+                    <strong>First Name:</strong> {{ application.first_name }}<br>
+                    <strong>Last Name:</strong> {{ application.last_name }}<br>
+                    <strong>Passport Number:</strong> {{ application.passport_number }}<br>
+                    <strong>Date of Birth:</strong> {{ application.date_of_birth }}<br>
+                    
+                    {% if application.signed_form_upload %}
+                        <strong>Signed Application Form:</strong>
+                        <a href="{% url 'download_signed_form' application.id %}" target="_blank">View</a>
+                        <!-- If you want to provide a download link: -->
+                        <!-- <a href="{{ application.signed_form_upload.url }}" download>Download</a> -->
+                        <br>
+                    {% else %}
+                        <strong>No Signed Application Form uploaded.</strong><br>
+                    {% endif %}
+                    
+                    {% if application.passport_upload %}
+                        <strong>Passport Upload:</strong>
+                        <a href="{% url 'download_passport_upload' application.id %}" target="_blank">View</a>
+                        <!-- If you want to provide a download link: -->
+                        <!-- <a href="{% url 'download_passport_upload' application.id %}" download>Download</a> -->
+                    {% else %}
+                        <strong>No Passport Upload found.</strong><br>
+                    {% endif %}
+
+                    {% if application.certificate_upload %}
+                        <br>
+                        <strong> Certificate Upload:</strong>
+                        <a href="{% url 'download_certificate_upload' application.id %}" target="_blank">View</a>
+                        <!-- If you want to provide a download link: -->
+                        <!-- <a href="{% url 'download_certificate_upload' application.id %}" download>Download</a> -->
+                        <br>
+                    {% else %}
+                        <strong>No Certificate Upload found.</strong><br>
+                    {% endif %}
+
+                    <a href="{% url 'delete_application' application.id %}">Delete Application</a>
+                    {{ application.id }}
+                    <a href="{% url 'edit_application' application.id %}">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No applications found.</p>
+    {% endif %}
+{% endblock %}
